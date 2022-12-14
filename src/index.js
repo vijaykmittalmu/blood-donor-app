@@ -1,13 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import Layout from "./components/Layout";
+import * as PAGES from "./pages";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <PAGES.Home />,
+      },
+      {
+        path: "/blood-request",
+        element: <PAGES.BloodRequest />,
+      },
+      {
+        path: "/live-feed",
+        element: <PAGES.LiveFeed />,
+      },
+      {
+        path: "/compatiblity",
+        element: <PAGES.Compatiblity />,
+      },
+      {
+        path: "/search-donor",
+        element: <PAGES.SearchDonor />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
